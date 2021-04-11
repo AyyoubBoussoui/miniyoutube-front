@@ -1,29 +1,85 @@
+<div class="container my-auto">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
 
-<div class="card">
-  <div class="card-header">
- CREATION DE PLAYLISTE
-  </div>
-  <div class="card-body">
-    <div class="form-group">
-      <label >REF</label>
-      <input type="text" class="form-control" [(ngModel)] ="playliste.ref">
-    </div>
-    <div class="card-body">
-      <div class="form-group">
-        <label >Titre</label>
-        <input type="text" class="form-control" [(ngModel)] ="playliste.titre">
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label >description</label>
-          <input type="text" class="form-control" [(ngModel)] ="playliste.description">
+        <div class="card-header"><i>PlayListe</i></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>REF</label>
+            <input type="text" class="form-control" [(ngModel)]="playliste.ref">
+          </div>
+
+          <div class="form-group">
+            <label>Titre</label>
+            <input type="text" class="form-control" [(ngModel)]="playliste.titre">
+          </div>
+
+          <div class="form-group">
+            <label>description</label>
+            <input type="text" class="form-control" [(ngModel)]="playliste.description">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-block btn-outline-success" (click)="save()"> CREER</button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">Video</div>
+
+            <div class="card-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                <th>REF</th>
+                <th>title</th>
+                <th>TotalView</th>
+
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of playliste.listeVideos">
+                  <td>{{c.ref}}</td>
+                  <td>{{c.titre}}</td>
+                  <td>{{c.totalVue}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer">
+
+            </div>
+
+
+          </div>
         </div>
 
       </div>
-  <div class="card-footer">
-    <button class="btn btn-block btn-outline-primary" (click)="save()"> CREER</button>
 
-  </div>
-   </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label>video ref</label>
+              <input type="text" class="form-control" [(ngModel)]="video.ref">
+            </div>
+            <div class="form-group">
+              <label>video total view</label>
+              <input type="number" class="form-control" [(ngModel)]="video.totalVue">
+            </div>
+            <div class="form-group">
+              <label>video title</label>
+              <input type="text" class="form-control" [(ngModel)]="video.titre">
+            </div>
+            <div>
+              <button class="btn btn-outline-danger btn-block" (click)="addVideo()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+

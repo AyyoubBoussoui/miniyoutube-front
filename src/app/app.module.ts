@@ -4,11 +4,13 @@ import { AppComponent } from './app.component';
 import { VideosComponent } from './videos/videos.component';
 import { VideoCreateComponent } from './videos/video-create/video-create.component';
 import { VideoListeComponent } from './videos/video-liste/video-liste.component';
-import {FormsModule} from '@angular/forms';
-import {PlaylistesComponent} from './playlistes/playlistes.component';
-import { AppRoutingModule } from './app-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// import {PlaylistesComponent} from './playlistes/playlistes.component';
+import {AppRoutingModule, components, componentsVideo} from './app-routing.module';
+/*
 import {PlaylisteCreateComponent} from './playlistes/playliste-create/playliste-create.component';
 import {PlaylisteListeComponent} from './playlistes/playliste-liste/playliste-liste.component';
+*/
 import {UserCreateComponent} from './users/user-create/user-create.component';
 import {UserListComponent} from './users/user-list/user-list.component';
 import {UsersComponent} from './users/users.component';
@@ -16,22 +18,29 @@ import {ChaineCreateComponent} from './chaines/chaine-create/chaine-create.compo
 import {ChainesComponent} from './chaines/chaines.component';
 import {ChaineListComponent} from './chaines/chaine-list/chaine-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
+import { PageNotFoundedComponent } from './page-not-founded/page-not-founded.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideosComponent,
+/*VideosComponent,
     VideoCreateComponent,
-    VideoListeComponent,
-    PlaylistesComponent,
+    VideoListeComponent,*/
+  /*  PlaylistesComponent,
     PlaylisteCreateComponent,
-    PlaylisteListeComponent,
+    PlaylisteListeComponent,*/
+    components,
+    componentsVideo,
     UserCreateComponent,
     UserListComponent,
     UsersComponent,
     ChaineCreateComponent,
     ChainesComponent,
-    ChaineListComponent
+    ChaineListComponent,
+    MenuComponent,
+    PageNotFoundedComponent
   ],
     imports: [
         BrowserModule,
@@ -40,6 +49,6 @@ import {HttpClientModule} from '@angular/common/http';
         AppRoutingModule
     ],
   providers: [],
-  bootstrap: [VideosComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {PlaylistesComponent} from './playlistes/playlistes.component';
 import {PlaylisteListeComponent} from './playlistes/playliste-liste/playliste-liste.component';
 import {PlaylisteCreateComponent} from './playlistes/playliste-create/playliste-create.component';
-import {BrowserModule} from '@angular/platform-browser';
-
+import {PageNotFoundedComponent} from './page-not-founded/page-not-founded.component';
+import {VideoCreateComponent} from './videos/video-create/video-create.component';
+import {VideoListeComponent} from './videos/video-liste/video-liste.component';
+export const components = [PlaylisteCreateComponent, PlaylisteListeComponent];
+export const componentsVideo = [VideoCreateComponent, VideoListeComponent];
 const routes: Routes = [
-  {path: 'playlistes', children: [{path: 'playlistes/playliste-liste', component: PlaylisteListeComponent},
-      {path: 'playlistes/playliste-create', component: PlaylisteCreateComponent}] }
+  {path: '', component : components[0]},
+  {path: 'playliste-create', component : components[0]},
+  {path: 'playliste-liste', component : components[1]},
+ /* {path: '**', component : PageNotFoundedComponent},*/
+  {path: 'video-create', component  : componentsVideo[0]},
+  {path: 'video-liste', component  : componentsVideo[1]}
 ];
 
 @NgModule({

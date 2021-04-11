@@ -11,14 +11,15 @@ export class VideoService {
   private _videos: Array<Video>;
   private _playListe: Playliste;
   private _urlBase = 'http://localhost:8036';
-  private _url = '/gestion-video/video';
+  private _url = '/application/video';
   private index: number;
   public save() {
      if (this.video.id == null){
       this.http.post(this.urlBase + this.url + '/', this.video ).subscribe(
         data => {
-          if (data > 1){
-          this.videos.push(this.cloneVideo(this.video)); }else {
+          if (data >= 1){
+           this.init();
+            }else {
             alert('error accrues during the creation ' + data);
           }
         }
@@ -33,6 +34,7 @@ export class VideoService {
     this.video = this.cloneVideo(v);
     this.index = index;
   }
+
 
   constructor(private http: HttpClient ) {
   }
@@ -83,7 +85,7 @@ export class VideoService {
     this._videos = value;
   }
   public init(){
-this.http.get<Array<Video>>('http://localhost:8036/gestion-video/video/').subscribe(
+this.http.get<Array<Video>>('http://localhost:8036/application/video/').subscribe(
    data => {
       this.videos = data;
   }, error  => {
@@ -91,18 +93,46 @@ this.http.get<Array<Video>>('http://localhost:8036/gestion-video/video/').subscr
   }
 );
   }
+  // tslint:disable-next-line:typedef
+  public delete(ref: string){
+    console.log(ref);
+    // @ts-ignore
+    this.http.delete(this.urlBase + this.url + '/ref/' + ref).subscribe(
+     data => {console.log(data);
+              this.init();
+     }
+   );
+  }
+ /* public searchVideo(){
+    this.http.get<Array<Video>>(this.urlBase + this.url + '/' + '/Total-Views').subscribe(
+      data => {this.videos = data;
+      }, error  => {
+      console.log(error);
+    }
+  );
+  }*/
   private cloneVideo(video: Video) {
     const myClone = new Video();
     myClone.ref = video.ref;
-    myClone.path = video.path;
-    myClone.url = video.url;
+   /* myClone.path = video.path;
+    myClone.url = video.url;*/
     myClone.totalVue = video.totalVue;
-    myClone.description = video.description;
+  /*  myClone.description = video.description;
     myClone.dislikes = video.dislikes;
     myClone.likes = video.likes;
     myClone.dateUpload = video.dateUpload;
-    myClone.tags = video.tags;
+    myClone.tags = video.tags;*/
     myClone.titre = video.titre;
+    myClone.playListe = video.playListe;
     return myClone;
+  }
+
+  // tslint:disable-next-line:typedef
+ public findVideo(ref: string) {
+    this.http.get<Array<Video>>(this.urlBase + this.url + '/playliste-ref/' + ref).subscribe(
+      data => {console.log(data);
+               //this.videos = data;
+      }
+    );
   }
 }

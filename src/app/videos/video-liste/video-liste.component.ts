@@ -14,8 +14,10 @@ export class VideoListeComponent implements OnInit {
   ngOnInit(): void {
     this.videoService.init();
   }
-  public delete(index: number){
-    this.videos.splice(index, 1 );
+  public delete(video: Video){
+    console.log(video);
+   this.videoService.delete(video.ref);
+    //this.videos.splice(index, 1 );
   }
   public update(index: number, v: Video ){
     this.videoService.update(index, v );

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Playliste} from '../../controller/model/playliste.model';
 import {PlayListeService} from '../../controller/service/playListe.service';
+import {Video} from '../../controller/model/video.model';
 
 @Component({
   selector: 'app-playliste-create',
@@ -18,8 +19,13 @@ export class PlaylisteCreateComponent implements OnInit {
   public save(){
     this.playListeService.save();
   }
-
+  get video(): Video {
+    return this.playListeService.video;
+  }
   ngOnInit(): void {
   }
 
+public  addVideo() {
+ return this.playListeService.addVideo();
+  }
 }
